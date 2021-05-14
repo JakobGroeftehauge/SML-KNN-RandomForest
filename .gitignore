@@ -3,7 +3,7 @@ __pycache__/
 *.py[cod]
 *$py.class
 *.asv
-
+*.csv
 # C extensions
 *.so
 
@@ -21,6 +21,7 @@ parts/
 sdist/
 var/
 wheels/
+.idea/
 pip-wheel-metadata/
 share/python-wheels/
 *.egg-info/
