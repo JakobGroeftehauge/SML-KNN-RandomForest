@@ -1,0 +1,26 @@
+from scipy.io import loadmat
+from sklearn import neighbors
+from matplotlib import pyplot as plt
+import numpy as np
+import math
+
+if __name__ == "__main__":
+    AllIn_test =     np.array(loadmat("Data/ALL_AllIn_test.mat")['AllIn_test'])
+    AllIn_train =    np.array(loadmat("Data/ALL_AllIn_train.mat")['AllIn_train'])
+    Disjunct_train = np.array(loadmat("Data/ALL_Disjunct_train.mat")['Disjunct_train'])
+    Disjunct_test =  np.array(loadmat("Data/ALL_Disjunct_test.mat")['Disjunct_test'])
+
+    lab_train_All = AllIn_train[:,0]
+    data_train_All = AllIn_train[:,1:]
+    lab_test_All = AllIn_test[:,0]
+    data_test_All = AllIn_test[:,1:]
+    lab_train_Dis = Disjunct_train[:,0]
+    data_train_Dis =Disjunct_train[:,1:]
+    lab_test_Dis = Disjunct_test[:,0]
+    data_test_Dis =Disjunct_test[:,1:]
+
+    knn = neighbors.KNeighborsClassifier(n_neighbors=2)
+    knn.fit(data_train_All, lab_train_All)
+    preds_test = knn.predict(data_test_All)
+    acc_test = np.sum(preds_test == lab_test_All)/len(lab_train_All)
+    print(acc_test)

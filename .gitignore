@@ -6,6 +6,7 @@ __pycache__/
 # C extensions
 *.so
 
+venv_sml/
 # Distribution / packaging
 .Python
 build/
@@ -127,3 +128,6 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+idList-co-100.Rdata
+idList-cor-100-2021new.Rdata
+Split data.ipynb
