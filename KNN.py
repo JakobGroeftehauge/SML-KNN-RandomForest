@@ -19,8 +19,25 @@ if __name__ == "__main__":
     lab_test_Dis = Disjunct_test[:,0]
     data_test_Dis =Disjunct_test[:,1:]
 
-    knn = neighbors.KNeighborsClassifier(n_neighbors=2)
-    knn.fit(data_train_All, lab_train_All)
-    preds_test = knn.predict(data_test_All)
-    acc_test = np.sum(preds_test == lab_test_All)/len(lab_train_All)
-    print(acc_test)
+    print("start")
+    acc_list_test = []
+    acc_list_train = []
+    for i in range(1, 11):
+        print("k: ", i)
+        knn = neighbors.KNeighborsClassifier(n_neighbors=i)
+        knn.fit(data_train_All, lab_train_All)
+        preds_test = knn.predict(data_test_All)
+        acc_test = np.sum(preds_test == lab_test_All)/len(lab_test_All)
+        acc_list_test.append(acc_test)
+
+        preds_train = knn.predict(data_train_All)
+        acc_train = np.sum(preds_train == lab_train_All)/len(lab_train_All)
+        acc_list_train.append(acc_train)
+
+        
+        print("acc test: ", acc_test)
+        print("acc train: ", acc_train)
+
+    print("test: ", acc_list_test)
+    print("train: ", acc_list_train)
+    
