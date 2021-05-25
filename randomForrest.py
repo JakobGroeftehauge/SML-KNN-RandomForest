@@ -77,10 +77,10 @@ def heatmap(data, row_labels, col_labels, ax=None,
     return im, cbar
 
 if __name__ == "__main__":
-    AllIn_test =     np.array(loadmat("Data/AllIn_test.mat")['AllIn_test'])
-    AllIn_train =    np.array(loadmat("Data/AllIn_train.mat")['AllIn_train'])
-    Disjunct_train = np.array(loadmat("Data/Disjunct_train.mat")['Disjunct_train'])
-    Disjunct_test =  np.array(loadmat("Data/Disjunct_test.mat")['Disjunct_test'])
+    AllIn_test =     np.array(loadmat("Data/ALL_AllIn_test.mat")['AllIn_test'])
+    AllIn_train =    np.array(loadmat("Data/ALL_AllIn_train.mat")['AllIn_train'])
+    Disjunct_train = np.array(loadmat("Data/ALL_Disjunct_train.mat")['Disjunct_train'])
+    Disjunct_test =  np.array(loadmat("Data/ALL_Disjunct_test.mat")['Disjunct_test'])
 
     lab_train_All = AllIn_train[:,0]
     data_train_All = AllIn_train[:,1:]
@@ -94,8 +94,8 @@ if __name__ == "__main__":
     model_all = rf(data_train_All, lab_train_All)
     model_dis = rf(data_train_Dis, lab_train_Dis)
 
-    print("validation accuracy: {:.3f}  test accuracy: {:.3f}".format(m_rmse(model_all, data_train_All, lab_train_All), m_rmse(model_all, data_test_All, lab_test_All)))
-    print("validation accuracy: {:.3f}  test accuracy: {:.3f}".format(m_rmse(model_dis, data_train_Dis, lab_train_Dis), m_rmse(model_dis, data_test_Dis, lab_test_Dis)))
+    print("All in:\t validation accuracy: {:.3f}  test accuracy: {:.3f}".format(m_rmse(model_all, data_train_All, lab_train_All), m_rmse(model_all, data_test_All, lab_test_All)))
+    print("DisJunct:\t validation accuracy: {:.3f}  test accuracy: {:.3f}".format(m_rmse(model_dis, data_train_Dis, lab_train_Dis), m_rmse(model_dis, data_test_Dis, lab_test_Dis)))
     print(np.array(model_all.feature_importances_).shape)
     featureIMG = np.reshape(np.array(model_all.feature_importances_), [18,18])
 
